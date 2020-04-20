@@ -24,7 +24,7 @@ import com.dell.springSecurity.services.MyUserDetailService;
  */
 
 @EnableWebSecurity
-public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private MyUserDetailService myUserDetailsService;
@@ -40,10 +40,20 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// TODO Auto-generated method stub
-		http.csrf().disable().authorizeRequests().antMatchers("/authenticate").permitAll().anyRequest().authenticated()
-				.and().exceptionHandling().and().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+		
+		  http.csrf().disable().authorizeRequests().antMatchers("/authenticate").
+		  permitAll().anyRequest().authenticated()
+		  .and().exceptionHandling().and().sessionManagement()
+		  .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		  http.addFilterBefore(jwtRequestFilter,
+		   UsernamePasswordAuthenticationFilter.class);
+		 
+		/*
+		 * http.authorizeRequests() .antMatchers("/admin").hasRole("ADMIN")
+		 * .antMatchers("/users").hasAnyRole("ADMIN","USERS")
+		 * .antMatchers("/").permitAll() .and().formLogin();
+		 */
+		       
 	}
 
 	@Override

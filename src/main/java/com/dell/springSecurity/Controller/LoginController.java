@@ -14,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -63,5 +64,20 @@ public class LoginController {
 		
 		return ResponseEntity.ok(new AuthenticateResponse(jwt));
 
+	}
+	
+	@GetMapping("/")
+	public String home() {
+		return ("Home");
+	}
+	
+	@GetMapping("/user")
+	public String User() {
+		return ("user");
+	}
+	
+	@GetMapping("/admin")
+	public String admin() {
+		return("admin");
 	}
 }
