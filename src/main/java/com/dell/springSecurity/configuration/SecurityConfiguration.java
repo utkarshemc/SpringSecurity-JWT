@@ -41,7 +41,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		// TODO Auto-generated method stub
 		
-		  http.csrf().disable().authorizeRequests().antMatchers("/authenticate").
+		  http.csrf().disable().authorizeRequests()
+		  .antMatchers("/admin").hasRole("ADMIN")
+		  .antMatchers("/authenticate").
 		  permitAll().anyRequest().authenticated()
 		  .and().exceptionHandling().and().sessionManagement()
 		  .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
