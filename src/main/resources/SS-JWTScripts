@@ -1,0 +1,7 @@
+CREATE DATABASE springSecurity;
+use springsecurity;
+
+CREATE TABLE USER (id int NOT NULL AUTO_INCREMENT, active Boolean NOT NULL, password varchar(255) NOT NULL, roles varchar(255) NOT NULL,username varchar(255) NOT NULL,PRIMARY KEY (id));
+
+INSERT INTO USER VALUES (true, 'demo','ROLE_USER','demo');
+INSERT INTO USER VALUES (true, 'admin','ROLE_ADMIN','admin');
